@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Faturi.Application\Faturi.Application.csproj" />
+    <ProjectReference Include="..\Faturi.Domain\Faturi.Domain.csproj" />
+    <ProjectReference Include="..\Faturi.Infra.Data\Faturi.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>
