@@ -9,7 +9,7 @@ namespace Faturi.Domain.Interface
 {
     public interface IBeneficiarioRepository
     {
-        Task<IEnumerable<Beneficiario>> GetConvenio();
+        Task<IEnumerable<Beneficiario>> GetBeneficiario();
         Task<Beneficiario> GetById(int? id);
         Task<Beneficiario> GetBeneficiarioConvenioById(int? id);
         Task<Beneficiario> Create(Beneficiario beneficiario);

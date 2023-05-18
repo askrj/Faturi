@@ -13,6 +13,8 @@ namespace Faturi.Domain.Entities
         public string ANS { get; private set; }
         public string Nome { get; private set; }
 
+        public Convenio() { }
+
         public Convenio(string nome, string ans)
         {
             ValidateDomain(nome, ans);
@@ -21,6 +23,7 @@ namespace Faturi.Domain.Entities
         public Convenio(int id, string ans, string nome)
         {
             DomainValidation.When(id < 0, "Código inválido");
+            Id= id;
             ValidateDomain(nome, ans);
         }
 
@@ -41,6 +44,7 @@ namespace Faturi.Domain.Entities
 
             DomainValidation.When(nome.Length < 5, 
                 "Nome precisa de no minimo cinco caracteres");
+
 
             Nome = nome;
             ANS= ans;

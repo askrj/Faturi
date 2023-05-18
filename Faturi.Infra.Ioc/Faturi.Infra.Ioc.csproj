@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Faturi.Application\Faturi.Application.csproj" />
     <ProjectReference Include="..\Faturi.Domain\Faturi.Domain.csproj" />
     <ProjectReference Include="..\Faturi.Infra.Data\Faturi.Infra.Data.csproj" />
