@@ -55,7 +55,7 @@ namespace Faturi.WebUi
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Beneficiario}/{action=Index}/{id?}");
+                    pattern: "{controller=home}/{action=Index}/{id?}");
             });
         }
     }
