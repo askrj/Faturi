@@ -4,6 +4,7 @@ using Faturi.Application.Services;
 using Faturi.Domain.Interface;
 using Faturi.Infra.Data.Context;
 using Faturi.Infra.Data.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,8 @@ namespace Faturi.Infra.Ioc
             services.AddScoped<IConvevioService, ConvenioService>();
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
+            var myhandlers = AppDomain.CurrentDomain.Load("Faturi.Application");
+            services.AddMediatR(myhandlers);
 
             return services;
         }

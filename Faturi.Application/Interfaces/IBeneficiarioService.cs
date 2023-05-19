@@ -11,7 +11,6 @@ namespace Faturi.Application.Interfaces
     {
         Task<IEnumerable<BeneficiarioDTO>> GetBeneficiarios();
         Task<BeneficiarioDTO> GetById(int? id);
-        Task<BeneficiarioDTO> GetBeneficiarioConvenio(int? id);
         Task Add(BeneficiarioDTO beneficiarioDTO);
         Task Update(BeneficiarioDTO beneficiarioDTO);
         Task Remove(int? id);

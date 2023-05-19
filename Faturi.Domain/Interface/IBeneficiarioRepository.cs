@@ -11,7 +11,6 @@ namespace Faturi.Domain.Interface
     {
         Task<IEnumerable<Beneficiario>> GetBeneficiario();
         Task<Beneficiario> GetById(int? id);
-        Task<Beneficiario> GetBeneficiarioConvenioById(int? id);
         Task<Beneficiario> Create(Beneficiario beneficiario);
         Task<Beneficiario> Update(Beneficiario beneficiario);
         Task<Beneficiario> Remove(Beneficiario beneficiario);

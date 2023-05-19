@@ -32,10 +32,6 @@ namespace Faturi.Infra.Data.Repositories
             return await _BeneficiarioContext.Beneficiarios.ToListAsync();
         }
 
-        public async Task<Beneficiario> GetBeneficiarioConvenioById(int? id)
-        {
-            return await _BeneficiarioContext.Beneficiarios.Include(c => c.Convenio).SingleOrDefaultAsync(b => b.Id == id);
-        }
 
         public async Task<Beneficiario> GetById(int? id)
         {

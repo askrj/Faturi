@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using Faturi.Application.Beneficiarios.Commands;
+using Faturi.Application.Beneficiarios.Queries;
 using Faturi.Application.DTOs;
 using Faturi.Application.Interfaces;
 using Faturi.Domain.Entities;
 using Faturi.Domain.Interface;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,47 +18,57 @@ namespace Faturi.Application.Services
     {
 
         private readonly IMapper _mapper;
-        private IBeneficiarioRepository _beneficiarioRepository;
-        public BeneficiarioService(IBeneficiarioRepository beneficiarioRepository, IMapper mapper)
+        private readonly IMediator _mediator;
+        public BeneficiarioService(IMapper mapper, IMediator mediator)
         {
-            _beneficiarioRepository = beneficiarioRepository ?? throw new ArgumentNullException(nameof(beneficiarioRepository));
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         public async Task<IEnumerable<BeneficiarioDTO>> GetBeneficiarios()
         {
-            var beneficiarioEntity = await _beneficiarioRepository.GetBeneficiario();
-            return _mapper.Map<IEnumerable<BeneficiarioDTO>>(beneficiarioEntity);
+            var beneficiarioQuery = new GetBeneficiarioQuerie();
+
+            if (beneficiarioQuery == null)
+                throw new Exception($"Entity could not be loaded.");
+
+            var result = await _mediator.Send(beneficiarioQuery);
+
+            return _mapper.Map<IEnumerable<BeneficiarioDTO>>(result);
         }
 
-        public async Task<BeneficiarioDTO> GetBeneficiarioConvenio(int? id)
-        {
-            var beneficiarioEntity = await _beneficiarioRepository.GetBeneficiarioConvenioById(id);
-            return _mapper.Map<BeneficiarioDTO>(beneficiarioEntity);
-        }
 
         public async Task<BeneficiarioDTO> GetById(int? id)
         {
-            var beneficiarioEntity = await _beneficiarioRepository.GetById(id);
-            return _mapper.Map<BeneficiarioDTO>(beneficiarioEntity);
+            var beneficiarioByIdQuery = new GetBeneficiarioByIdQueries(id.Value);
+
+            if (beneficiarioByIdQuery == null)
+                throw new Exception($"Entity could not be loaded.");
+
+            var result = await _mediator.Send(beneficiarioByIdQuery);
+
+            return _mapper.Map<BeneficiarioDTO>(result);
         }
 
         public async Task Add(BeneficiarioDTO beneficiarioDTO)
         {
-            var beneficiarioEntity = _mapper.Map<Beneficiario>(beneficiarioDTO);
-            await _beneficiarioRepository.Create(beneficiarioEntity);
+            var beneficiarioCreateCommand = _mapper.Map<BeneficiarioCreateCommand>(beneficiarioDTO);
+            await _mediator.Send(beneficiarioCreateCommand);
         }
 
         public async Task Remove(int? id)
         {
-            var beneficiarioEntity = _beneficiarioRepository.GetById(id).Result;
-            await _beneficiarioRepository.Remove(beneficiarioEntity);
+            var beneficiarioRemoveCommand = new BeneficiarioRemoveCommand(id.Value);
+            if (beneficiarioRemoveCommand == null)
+                throw new Exception($"Entity could not be loaded.");
+
+            await _mediator.Send(beneficiarioRemoveCommand);
         }
 
         public async Task Update(BeneficiarioDTO beneficiarioDTO)
         {
-            var beneficiarioEntity = _mapper.Map<Beneficiario>(beneficiarioDTO);
-            await _beneficiarioRepository.Update(beneficiarioEntity);
+            var beneficiarioUpdateCommand = _mapper.Map<BeneficiarioUpdateCommand>(beneficiarioDTO);
+            await _mediator.Send(beneficiarioUpdateCommand);
         }
     }
 }
