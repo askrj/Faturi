@@ -18,7 +18,7 @@ namespace Faturi.Application.DTOs
 
         [Required(ErrorMessage = "Digite nome do plano")]
         [MinLength(3)]
-        [MaxLength(8)]
+        [MaxLength(100)]
         public string Nome { get; set; }
     }
 }

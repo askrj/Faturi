@@ -1,0 +1,36 @@
+﻿@model Faturi.Application.DTOs.ConvenioDTO;
+
+@{
+    ViewData["Title"] = "Registrar Novo Convenio";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-horizontal">
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Nome" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ANS" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="ANS" class="form-control" />
+                    <span asp-validation-for="ANS" class="text-danger"></span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <br />
+                <input type="submit" value="Cadastrar" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-info">Voltar a Lista</a>
+            </div>
+        </div>
+    </div>
+</form>
