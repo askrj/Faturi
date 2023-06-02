@@ -22,7 +22,7 @@ namespace Faturi.Application.Beneficiarios.Hendlers
 
         public async Task<Beneficiario> Handle(BeneficiarioRemoveCommand request, CancellationToken cancellationToken)
         {
-            var beneficiario = await _beneficiarioRepository.GetById(request.Id);
+            var beneficiario = await _beneficiarioRepository.GetByIdAsync(request.Id);
 
             if (beneficiario == null)
             {
@@ -30,7 +30,7 @@ namespace Faturi.Application.Beneficiarios.Hendlers
             }
             else
             {
-                var result = await _beneficiarioRepository.Remove(beneficiario);
+                var result = await _beneficiarioRepository.RemoveAsync(beneficiario);
                 return result;
 
             }

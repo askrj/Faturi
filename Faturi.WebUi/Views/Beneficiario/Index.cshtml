@@ -37,6 +37,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.CPF)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Convenio)
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -52,6 +55,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CPF)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Convenio.Nome)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning">

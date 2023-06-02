@@ -13,43 +13,46 @@ namespace Faturi.Infra.Data.Repositories
 {
     public class BeneficiarioRepository : IBeneficiarioRepository
     {
-        ApplicationDbContext _BeneficiarioContext;
+        ApplicationDbContext _beneficiarioContext;
 
         public BeneficiarioRepository(ApplicationDbContext context)
         {
-            _BeneficiarioContext = context;
+            _beneficiarioContext = context;
         }
 
-        public async Task<Beneficiario> Create(Beneficiario beneficiario)
+        public async Task<Beneficiario> CreateAsync(Beneficiario beneficiario)
         {
-            _BeneficiarioContext.Add(beneficiario);
-            await _BeneficiarioContext.SaveChangesAsync();
+            _beneficiarioContext.Add(beneficiario);
+            await _beneficiarioContext.SaveChangesAsync();
             return beneficiario;
         }
 
-        public async Task<IEnumerable<Beneficiario>> GetBeneficiario()
+        public async Task<IEnumerable<Beneficiario>> GetBeneficiarioAsync()
         {
-            return await _BeneficiarioContext.Beneficiarios.ToListAsync();
+            return await _beneficiarioContext.Beneficiarios.ToListAsync();
         }
 
 
-        public async Task<Beneficiario> GetById(int? id)
+        public async Task<Beneficiario> GetByIdAsync(int? id)
         {
-            return await _BeneficiarioContext.Beneficiarios.FindAsync(id);
+            //return await _beneficiarioContext.Beneficiarios.FindAsync(id);
+
+            return await _beneficiarioContext.Beneficiarios.Include(c => c.Convenio)
+                   .SingleOrDefaultAsync(p => p.Id == id);
         }
 
 
-        public async Task<Beneficiario> Remove(Beneficiario beneficiario)
+        public async Task<Beneficiario> RemoveAsync(Beneficiario beneficiario)
         {
-            _BeneficiarioContext.Remove(beneficiario);
-            await _BeneficiarioContext.SaveChangesAsync();
+            _beneficiarioContext.Remove(beneficiario);
+            await _beneficiarioContext.SaveChangesAsync();
             return beneficiario;
         }
 
-        public async Task<Beneficiario> Update(Beneficiario beneficiario)
+        public async Task<Beneficiario> UpdateAsync(Beneficiario beneficiario)
         {
-            _BeneficiarioContext.Update(beneficiario);
-            await _BeneficiarioContext.SaveChangesAsync();
+            _beneficiarioContext.Update(beneficiario);
+            await _beneficiarioContext.SaveChangesAsync();
             return beneficiario;
         }
     }

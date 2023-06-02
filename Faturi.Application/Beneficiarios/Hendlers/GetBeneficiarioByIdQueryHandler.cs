@@ -22,7 +22,7 @@ namespace Faturi.Application.Beneficiarios.Hendlers
 
         public async Task<Beneficiario> Handle(GetBeneficiarioByIdQueries request, CancellationToken cancellationToken)
         {
-            return await _beneficiarioRepository.GetById(request.Id);
+            return await _beneficiarioRepository.GetByIdAsync(request.Id);
         }
     }
 }

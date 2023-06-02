@@ -42,6 +42,12 @@ namespace Faturi.WebUi.Controllers
             {
                 await _beneficiarioService.Add(beneficiarioDTO);
                 return RedirectToAction(nameof(Index));
+
+            }
+            else
+            {
+                ViewBag.CategoryId =
+                            new SelectList(await _convenioService.GetConvenios(), "Id", "Name");
             }
             return View(beneficiarioDTO);
         }
@@ -54,7 +60,7 @@ namespace Faturi.WebUi.Controllers
 
             if (beneficiarioDTO == null) return NotFound();
 
-            var convenio = await _beneficiarioService.GetBeneficiarios();
+            var convenio = await _convenioService.GetConvenios();
             ViewBag.ConvenioId = new SelectList(convenio, "Id", "Nome", beneficiarioDTO.ConvenioId);
 
             return View(beneficiarioDTO);
@@ -95,15 +101,15 @@ namespace Faturi.WebUi.Controllers
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
-            var productDto = await _beneficiarioService.GetById(id);
+            var beneficiarioDto = await _beneficiarioService.GetById(id);
 
-            if (productDto == null) return NotFound();
+            if (beneficiarioDto == null) return NotFound();
             var wwwroot = _environment.WebRootPath;
-            var image = Path.Combine(wwwroot, "images\\" + productDto.Foto);
+            var image = Path.Combine(wwwroot, "images\\" + beneficiarioDto.Foto);
             var exists = System.IO.File.Exists(image);
             ViewBag.ImageExist = exists;
 
-            return View(productDto);
+            return View(beneficiarioDto);
         }
         
     }

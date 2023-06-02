@@ -33,7 +33,7 @@ namespace Faturi.Application.DTOs
 
         public string Foto { get;   set; }
 
-        public Convenio Convenio { get; set; }
+        public Convenio? Convenio { get; set; }
 
         [DisplayName("Convenio")]
         public int ConvenioId { get; set; }

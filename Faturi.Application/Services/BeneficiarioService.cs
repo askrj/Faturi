@@ -3,14 +3,7 @@ using Faturi.Application.Beneficiarios.Commands;
 using Faturi.Application.Beneficiarios.Queries;
 using Faturi.Application.DTOs;
 using Faturi.Application.Interfaces;
-using Faturi.Domain.Entities;
-using Faturi.Domain.Interface;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Faturi.Application.Services
 {

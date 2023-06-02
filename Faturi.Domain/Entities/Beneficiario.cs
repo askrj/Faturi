@@ -30,10 +30,10 @@ namespace Faturi.Domain.Entities
             ValidateDomain(nome, carteira, cpf, nascimento, foto);
         }
 
-        public void update(string nome, string carteira, string cpf, DateTime nascimento, string foto)
+        public void update(string nome, string carteira, string cpf, DateTime nascimento, string foto, int convenioId)
         {
             ValidateDomain(nome, carteira, cpf, nascimento, foto);
-            ConvenioId = ConvenioId;
+            ConvenioId = convenioId;
         }
 
 
@@ -64,6 +64,6 @@ namespace Faturi.Domain.Entities
         }
 
         public int ConvenioId { get; set; }
-        public Convenio Convenio { get; set; }
+        public Convenio Convenio { get; set; } 
     }
 }

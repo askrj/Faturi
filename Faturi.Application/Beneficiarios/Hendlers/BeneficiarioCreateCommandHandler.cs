@@ -30,7 +30,7 @@ namespace Faturi.Application.Beneficiarios.Hendlers
             else
             {
                 beneficiario.ConvenioId = request.ConvevioId;
-                return await _beneficiarioRepository.Create(beneficiario);
+                return await _beneficiarioRepository.CreateAsync(beneficiario);
             }
         }
     }

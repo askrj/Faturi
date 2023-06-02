@@ -9,10 +9,10 @@ namespace Faturi.Domain.Interface
 {
     public interface IBeneficiarioRepository
     {
-        Task<IEnumerable<Beneficiario>> GetBeneficiario();
-        Task<Beneficiario> GetById(int? id);
-        Task<Beneficiario> Create(Beneficiario beneficiario);
-        Task<Beneficiario> Update(Beneficiario beneficiario);
-        Task<Beneficiario> Remove(Beneficiario beneficiario);
+        Task<IEnumerable<Beneficiario>> GetBeneficiarioAsync();
+        Task<Beneficiario> GetByIdAsync(int? id);
+        Task<Beneficiario> CreateAsync(Beneficiario beneficiario);
+        Task<Beneficiario> UpdateAsync(Beneficiario beneficiario);
+        Task<Beneficiario> RemoveAsync(Beneficiario beneficiario);
     }
 }
